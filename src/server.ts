@@ -3,6 +3,9 @@ import routes from "./routes/routes";
 
 const app = express();
 
+//Configução do express para receber requisições em JSON
+app.use(express.json());
+
 //Rotas
 app.use(routes);
 
