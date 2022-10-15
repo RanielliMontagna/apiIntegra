@@ -19,7 +19,8 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  tokens Token[]
+  tokens      Token[]
+  Transaction Transaction[]
 
   @@map("tb_users")
 }
@@ -33,4 +34,19 @@ model Token {
   User User? @relation(fields: [idUser], references: [id])
 
   @@map("tb_tokens")
+}
+
+model Transaction {
+  id     Int @id @default(autoincrement())
+  idUser Int
+
+  title     String
+  value     Float
+  type      Int      @default(0) // 0 = receita | 1 = despesa
+  date      DateTime
+  createdAt DateTime @default(now())
+
+  User User? @relation(fields: [idUser], references: [id])
+
+  @@map("tb_transactions")
 }
