@@ -1,4 +1,6 @@
 import { Router } from "express";
+import cors from "cors";
+
 import { loginController } from "../controllers/authentication/loginController";
 import { logoutController } from "../controllers/authentication/logoutController";
 import { JwtMiddleware } from "../middlewares/jwt";
@@ -8,6 +10,9 @@ import { transactionsRoutes } from "./transactions.routes";
 import usersRoutes from "./users.routes";
 
 const routes = Router();
+
+// Liberar origens das requisições
+routes.use(cors({ origin: "*" }));
 
 // Rota para ver se a api está funcionando
 routes.get("/", (req, res) => {
